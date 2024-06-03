@@ -1,0 +1,18 @@
+{
+  "name": "phaser-survival",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1",
+    "phaser-matter-collision-plugin": "^1.0.0"
+  }
+}
