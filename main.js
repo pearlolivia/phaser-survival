@@ -6,7 +6,7 @@ import MainScene from "./scenes/mainScene";
 const gameConfig = {
   width: game.width,
   height: game.height,
-  backgroundColor: '#333333',
+  backgroundColor: '#888888',
   type: Phaser.AUTO,
   parent: 'survival-game', // id of root div in index.html
   scene: [MainScene],

@@ -1,5 +1,6 @@
 import { Scene, Physics, Input, Math } from 'phaser';
 import Player from '../components/Player';
+// import { game } from "../consts";
 
 export default class MainScene extends Scene {
     constructor() {
@@ -16,13 +17,12 @@ export default class MainScene extends Scene {
     }
 
     create() {
-        Player.create(this);
-        // this.inputKeys = this.input.keyboard.addKeys({
-        //     up: Input.Keyboard.KeyCodes.W,
-        //     down: Input.Keyboard.KeyCodes.S,
-        //     left: Input.Keyboard.KeyCodes.A,
-        //     right: Input.Keyboard.KeyCodes.D,
-        // });
+        this.inputKeys = this.input.keyboard.addKeys({
+            up: Input.Keyboard.KeyCodes.W,
+            down: Input.Keyboard.KeyCodes.S,
+            left: Input.Keyboard.KeyCodes.A,
+            right: Input.Keyboard.KeyCodes.D,
+        });
 
         this.player = new Player({
             scene: this,
@@ -30,13 +30,12 @@ export default class MainScene extends Scene {
             y: 0,
             texture: 'female',
             frame: 'princess_idle_1',
-            inputKeys: this.inputKeys,
         }); // create sprite
 
         this.add.existing(this.player); // render
     }
     
-    update() {
-        this.player.update();
+    update (time, delta) {
+        Player.update(this, this.player);
     }
 }
