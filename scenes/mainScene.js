@@ -14,9 +14,18 @@ export default class MainScene extends Scene {
 
     preload() {
         Player.preload(this);
+        this.load.image('tiles', 'assets/images/RPG Nature Tileset.png');
+        this.load.tilemapTiledJSON('map', 'assets/images/map.json');
     }
 
     create() {
+        const map = this.add.tilemap('map');
+        const tileset = map.addTilesetImage('RPG Nature Tileset', 'tiles', 32, 32, 0, 0);
+        const layer1 = map.createLayer('Tile Layer 1', tileset, 0, 0);
+        const layer2 = map.createLayer('Tile Layer 2', tileset, 0, 0);
+        layer1.setCollisionByProperty({ collides: true });
+        this.matter.world.convertTilemapLayer(layer1);
+
         this.inputKeys = this.input.keyboard.addKeys({
             up: Input.Keyboard.KeyCodes.W,
             down: Input.Keyboard.KeyCodes.S,
@@ -26,11 +35,19 @@ export default class MainScene extends Scene {
 
         this.player = new Player({
             scene: this,
-            x: 0,
-            y: 0,
+            x: 50,
+            y: 50,
             texture: 'female',
             frame: 'princess_idle_1',
         }); // create sprite
+
+        this.testPlayer = new Player({
+            scene: this,
+            x: 100,
+            y: 100,
+            texture: 'female',
+            frame: 'princess_idle_1',
+        });
 
         this.add.existing(this.player); // render
     }
