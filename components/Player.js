@@ -26,6 +26,7 @@ export default class Player extends Physics.Matter.Sprite {
     get velocity () {
         return this.body.velocity;
     }
+    
     static update(scene, player) {
         const { playerSpeed } = game;
         let playerVelocity = new Phaser.Math.Vector2();
