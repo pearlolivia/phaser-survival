@@ -10,7 +10,7 @@ export default class Player extends Physics.Matter.Sprite {
 
     static preload(scene) {
         scene.load.atlas('female', 'assets/images/female.png', 'assets/images/female_atlas.json');
-        scene.load.animation('female_animation', 'assets/images/female_animation.json');
+        scene.load.animation('female_anim', 'assets/images/female_anim.json');
     }
 
     get velocity () {
