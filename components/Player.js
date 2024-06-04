@@ -30,7 +30,6 @@ export default class Player extends Physics.Matter.Sprite {
         const { playerSpeed } = game;
         let playerVelocity = new Phaser.Math.Vector2();
 
-        player.anims.play('idle', true);
         if (scene.inputKeys.left.isDown) {
             playerVelocity.x = -1;
         } else if (scene.inputKeys.right.isDown) {
