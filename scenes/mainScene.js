@@ -21,6 +21,9 @@ export default class MainScene extends Scene {
         this.load.image('biome', 'assets/images/moo-moo-juice/Basic_Grass_Biom_things.png');
         this.load.image('dirt', 'assets/images/moo-moo-juice/Tilled_Dirt.png');
         this.load.tilemapTiledJSON('map', 'assets/images/moo-moo-juice/map.json');
+
+        this.load.atlas('chest', 'assets/images/chest/chest.png', 'assets/images/chest/chest_atlas.json');
+        this.load.animation('chest_anim', 'assets/images/chest/chest_anim.json');
     }
 
     create() {
@@ -30,6 +33,7 @@ export default class MainScene extends Scene {
         const grassTileset = map.addTilesetImage('Grass', 'grass', 16, 16, 0, 0);
         const biomeTileset = map.addTilesetImage('Basic_Grass_Biom_things', 'biome', 16, 16, 0, 0);
         const dirtTileset = map.addTilesetImage('Tilled_Dirt', 'dirt', 16, 16, 0, 0);
+
         // layer name in map + created tileset + x + y
         const layer1 = map.createLayer('Water', waterTileset, 0, 0);
         const layer2 = map.createLayer('Island', grassTileset, 0, 0);
@@ -37,10 +41,10 @@ export default class MainScene extends Scene {
         const layer4 = map.createLayer('Nature', biomeTileset, 0, 0);
         const layer5 = map.createLayer('Tilled Ground', dirtTileset, 0, 0);
 
-        // layer1.setCollisionByProperty({ collides: true });
-        // layer3.setCollisionByProperty({ collides: true });
-        // this.matter.world.convertTilemapLayer(layer1);
-        // this.matter.world.convertTilemapLayer(layer3);
+        layer3.setCollisionByProperty({ collides: true });
+        layer4.setCollisionByProperty({ collides: true });
+        this.matter.world.convertTilemapLayer(layer3);
+        this.matter.world.convertTilemapLayer(layer4);
 
         this.inputKeys = this.input.keyboard.addKeys({
             up: Input.Keyboard.KeyCodes.W,
@@ -49,27 +53,44 @@ export default class MainScene extends Scene {
             right: Input.Keyboard.KeyCodes.D,
         });
 
+        this.deliveryBin = new Physics.Matter.Sprite(
+            this.matter.world,
+            350,
+            200,
+            'chest',
+            'chest_sprite_0',
+            {
+                label: 'chest',
+                isStatic: true,
+                circleRadius: 12,
+                onCollideCallback: () => this.deliveryBin.anims.play('open'),
+                onCollideEndCallback: () => this.deliveryBin.anims.play('close'),
+            }
+        );
+        this.deliveryBin.setSize(12, 12);
+
         this.player = new Player({
             scene: this,
-            x: 50,
-            y: 50,
+            x: 150,
+            y: 150,
             texture: 'female',
             frame: 'princess_idle_1',
         }); // create sprite
 
         this.testPlayer = new Player({
             scene: this,
-            x: 100,
-            y: 100,
+            x: 200,
+            y: 300,
             texture: 'female',
             frame: 'princess_idle_1',
         });
 
         this.add.existing(this.player); // render player
+        this.add.existing(this.deliveryBin);
 
-        this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-            console.log(event, bodyA, bodyB);
-        })
+        // this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
+        //     console.log(event, bodyA, bodyB);
+        // })
     }
     
     update (time, delta) {

@@ -1,0 +1,60 @@
+{
+    "anims": [
+        {
+            "key": "chest_close",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_4"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_3"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_2"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_1"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_0"
+                }
+            ]
+        },
+        {
+            "key": "chest_open",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_0"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_1"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_2"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_3"
+                },
+                {
+                    "key": "chest",
+                    "frame": "chest_sprite_4"
+                }
+            ]
+        }
+    ]
+}
