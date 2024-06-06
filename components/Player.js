@@ -48,7 +48,7 @@ export default class Player extends Physics.Matter.Sprite {
 
         // if player is moving
         if (Math.abs(player.velocity.x) > 0.1 || Math.abs(player.velocity.y) > 0.1) {
-            player.anims.play('walk', true); // FIX
+            player.anims.play('walk', true);
         } else {
             player.anims.play('idle', true);
         }

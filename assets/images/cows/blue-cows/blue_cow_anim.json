@@ -1,0 +1,32 @@
+{
+    "anims": [
+        {
+            "key": "blue_cow_walk",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 2,
+            "frames": [
+                {
+                    "key": "blue_cow",
+                    "frame": "blue_cow_0"
+                },
+                {
+                    "key": "blue_cow",
+                    "frame": "blue_cow_1"
+                },
+                {
+                    "key": "blue_cow",
+                    "frame": "blue_cow_2"
+                },
+                {
+                    "key": "blue_cow",
+                    "frame": "blue_cow_3"
+                },
+                {
+                    "key": "blue_cow",
+                    "frame": "blue_cow_4"
+                }
+            ]
+        }
+    ]
+}

@@ -1,11 +1,14 @@
 import { Scene, Physics, Input, Math } from 'phaser';
 import Player from '../components/Player';
+import Cow from '../components/Cow';
+import Chest from '../components/Chest';
 // import { game } from "../consts";
 
 export default class MainScene extends Scene {
     constructor() {
         super('MainScene');
         this.player = null;
+        this.chestOpen = false;
     }
 
     init(data) {
@@ -14,6 +17,8 @@ export default class MainScene extends Scene {
 
     preload() {
         Player.preload(this);
+        Cow.preload(this);
+        Chest.preload(this);
         // this.load.image('tiles', 'assets/images/RPG Nature Tileset.png');
         // this.load.tilemapTiledJSON('map', 'assets/images/map.json');
         this.load.image('water', 'assets/images/moo-moo-juice/Water.png');
@@ -53,21 +58,49 @@ export default class MainScene extends Scene {
             right: Input.Keyboard.KeyCodes.D,
         });
 
-        this.deliveryBin = new Physics.Matter.Sprite(
-            this.matter.world,
-            350,
-            200,
-            'chest',
-            'chest_sprite_0',
-            {
+        // this.deliveryBin = new Physics.Matter.Sprite(
+        //     this.matter.world,
+        //     350,
+        //     200,
+        //     'chest',
+        //     'chest_sprite_0',
+        //     {
+        //         label: 'chest',
+        //         isStatic: true,
+        //         onCollideCallback: () => {
+        //             if (this.chestOpen === false) {
+        //                 this.chestOpen = true;
+        //             }
+        //         },
+        //         onCollideEndCallback: () => {
+        //             if (this.chestOpen === true) {
+        //                 this.chestOpen = false;
+        //             }
+        //         },
+        //     }
+        // );
+
+        this.deliveryBin = new Chest({
+            scene: this,
+            x: 350,
+            y: 200,
+            texture: 'chest',
+            frame: 'chest_sprite_0',
+            config: {
                 label: 'chest',
                 isStatic: true,
-                circleRadius: 12,
-                onCollideCallback: () => this.deliveryBin.anims.play('open'),
-                onCollideEndCallback: () => this.deliveryBin.anims.play('close'),
-            }
-        );
-        this.deliveryBin.setSize(12, 12);
+                onCollideCallback: () => {
+                    if (this.chestOpen === false) {
+                        this.chestOpen = true;
+                    }
+                },
+                onCollideEndCallback: () => {
+                    if (this.chestOpen === true) {
+                        this.chestOpen = false;
+                    }
+                },
+            },
+        });
 
         this.player = new Player({
             scene: this,
@@ -77,12 +110,12 @@ export default class MainScene extends Scene {
             frame: 'princess_idle_1',
         }); // create sprite
 
-        this.testPlayer = new Player({
+        this.cow = new Cow({
             scene: this,
-            x: 200,
-            y: 300,
-            texture: 'female',
-            frame: 'princess_idle_1',
+            x: 250,
+            y: 250,
+            texture: 'white_cow',
+            frame: 'white_cow_0',
         });
 
         this.add.existing(this.player); // render player
@@ -95,5 +128,7 @@ export default class MainScene extends Scene {
     
     update (time, delta) {
         Player.update(this, this.player);
+        Cow.update(this.cow);
+        Chest.update(this.deliveryBin, this.chestOpen);
     }
 }

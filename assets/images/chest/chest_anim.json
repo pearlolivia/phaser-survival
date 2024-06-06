@@ -1,10 +1,10 @@
 {
     "anims": [
         {
-            "key": "chest_close",
+            "key": "close",
             "type": "frames",
             "repeat": -1,
-            "frameRate": 12,
+            "frameRate": 1,
             "frames": [
                 {
                     "key": "chest",
@@ -29,10 +29,10 @@
             ]
         },
         {
-            "key": "chest_open",
+            "key": "open",
             "type": "frames",
             "repeat": -1,
-            "frameRate": 12,
+            "frameRate": 1,
             "frames": [
                 {
                     "key": "chest",

@@ -1,0 +1,32 @@
+{
+    "anims": [
+        {
+            "key": "white_cow_walk",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 2,
+            "frames": [
+                {
+                    "key": "white_cow",
+                    "frame": "white_cow_0"
+                },
+                {
+                    "key": "white_cow",
+                    "frame": "white_cow_1"
+                },
+                {
+                    "key": "white_cow",
+                    "frame": "white_cow_2"
+                },
+                {
+                    "key": "white_cow",
+                    "frame": "white_cow_3"
+                },
+                {
+                    "key": "white_cow",
+                    "frame": "white_cow_4"
+                }
+            ]
+        }
+    ]
+}
