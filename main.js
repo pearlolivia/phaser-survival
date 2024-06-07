@@ -27,6 +27,10 @@ const gameConfig = {
       mapping: 'matterCollision',
     }]
   },
+  scale: {
+    mode: Phaser.Scale.FIT, // responsive
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+},
 };
 
 new Phaser.Game(gameConfig);

@@ -9,6 +9,7 @@ export default class MainScene extends Scene {
         super('MainScene');
         this.player = null;
         this.chestOpen = false;
+        this.isPlayerNearCow = false;
     }
 
     init(data) {
@@ -58,28 +59,6 @@ export default class MainScene extends Scene {
             right: Input.Keyboard.KeyCodes.D,
         });
 
-        // this.deliveryBin = new Physics.Matter.Sprite(
-        //     this.matter.world,
-        //     350,
-        //     200,
-        //     'chest',
-        //     'chest_sprite_0',
-        //     {
-        //         label: 'chest',
-        //         isStatic: true,
-        //         onCollideCallback: () => {
-        //             if (this.chestOpen === false) {
-        //                 this.chestOpen = true;
-        //             }
-        //         },
-        //         onCollideEndCallback: () => {
-        //             if (this.chestOpen === true) {
-        //                 this.chestOpen = false;
-        //             }
-        //         },
-        //     }
-        // );
-
         this.deliveryBin = new Chest({
             scene: this,
             x: 350,
@@ -121,14 +100,24 @@ export default class MainScene extends Scene {
         this.add.existing(this.player); // render player
         this.add.existing(this.deliveryBin);
 
-        // this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-        //     console.log(event, bodyA, bodyB);
-        // })
+        this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
+            if (bodyA.label === 'playerCollider' && bodyB.label === 'cowCollider') {
+                console.log('It\'s milkin time!');
+                this.isPlayerNearCow = true;
+            }
+        });
+
+        this.matter.world.on('collisionend', (event, bodyA, bodyB) => {
+            if (bodyA.label === 'playerCollider' && bodyB.label === 'cowCollider') {
+                console.log('Got em!');
+                this.isPlayerNearCow = false;
+            }
+        });
     }
     
     update (time, delta) {
         Player.update(this, this.player);
-        Cow.update(this.cow);
+        Cow.update(this.cow, this.isPlayerNearCow);
         Chest.update(this.deliveryBin, this.chestOpen);
     }
 }

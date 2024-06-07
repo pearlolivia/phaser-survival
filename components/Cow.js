@@ -27,18 +27,23 @@ export default class Cow extends Physics.Matter.Sprite {
         return this.body.velocity;
     }
     
-    static update(cow) {
+    static update(cow, isPlayerNearby) {
         const { cowSpeed } = game;
         let cowVelocity = new Phaser.Math.Vector2();
 
         // randomise movement + when cow hits map edge turn around
-        // stop cow moving when player nearby
-        cowVelocity.x = 1;
+        if (isPlayerNearby === true) {
+            cowVelocity.x = 0;
+            cow.anims.play('white_cow_idle', true);
+        }
+        if (isPlayerNearby === false) {
+            cowVelocity.x = 1;
+            cow.anims.play('white_cow_walk', true);
+        }
         cowVelocity.y = 0;
 
         cowVelocity.normalize();
         cowVelocity.scale(cowSpeed);
         cow.setVelocity(cowVelocity.x, cowVelocity.y);
-        cow.anims.play('white_cow_walk', true);
     }
 }
