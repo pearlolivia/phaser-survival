@@ -1,10 +1,12 @@
 import { Physics, Input } from "phaser";
 import { game } from "../consts";
+import Inventory from "./Inventory";
 
 export default class Player extends Physics.Matter.Sprite {
     constructor(data) {
         let { scene, x, y, texture, frame } = data;
         super(scene.matter.world, x, y, texture, frame);
+        this.inventory = new Inventory();
         this.scene.add.existing(this);
 
         const { Body, Bodies } = Physics.Matter.Matter;

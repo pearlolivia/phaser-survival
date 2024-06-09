@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { game } from "./consts";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 import MainScene from "./scenes/mainScene";
+import InventoryScene from "./scenes/inventoryScene";
 
 const gameConfig = {
   width: game.width,
@@ -9,7 +10,7 @@ const gameConfig = {
   backgroundColor: '#888888',
   type: Phaser.AUTO,
   parent: 'survival-game', // id of root div in index.html
-  scene: [MainScene],
+  scene: [MainScene, InventoryScene],
   scale: {
     zoom: 2,
   },

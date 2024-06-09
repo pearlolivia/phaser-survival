@@ -1,4 +1,4 @@
-import { Scene, Physics, Input, Math } from 'phaser';
+import { Scene, Input } from 'phaser';
 import Player from '../components/Player';
 import Cow from '../components/Cow';
 import Chest from '../components/Chest';
@@ -17,19 +17,17 @@ export default class MainScene extends Scene {
     }
 
     preload() {
+        // run preloaders in separate components
         Player.preload(this);
         Cow.preload(this);
         Chest.preload(this);
-        // this.load.image('tiles', 'assets/images/RPG Nature Tileset.png');
-        // this.load.tilemapTiledJSON('map', 'assets/images/map.json');
+
+        // load tileset images and map json
         this.load.image('water', 'assets/images/moo-moo-juice/Water.png');
         this.load.image('grass', 'assets/images/moo-moo-juice/Grass.png');
         this.load.image('biome', 'assets/images/moo-moo-juice/Basic_Grass_Biom_things.png');
         this.load.image('dirt', 'assets/images/moo-moo-juice/Tilled_Dirt.png');
         this.load.tilemapTiledJSON('map', 'assets/images/moo-moo-juice/map.json');
-
-        this.load.atlas('chest', 'assets/images/chest/chest.png', 'assets/images/chest/chest_atlas.json');
-        this.load.animation('chest_anim', 'assets/images/chest/chest_anim.json');
     }
 
     create() {
@@ -113,6 +111,8 @@ export default class MainScene extends Scene {
                 this.isPlayerNearCow = false;
             }
         });
+
+        this.scene.launch('InventoryScene', { mainScene: this });
     }
     
     update (time, delta) {
