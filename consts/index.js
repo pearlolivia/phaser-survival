@@ -39,11 +39,11 @@ export const items = {
         frame: 8,
         colour: 'yellow',
     },
-    corn_seeds: {
+    wheat_seeds: {
         frame: 9,
         colour: 'chocolate',
     },
-    corn: {
+    wheat: {
         frame: 10,
         colour: 'chocolate',
     },
@@ -54,5 +54,53 @@ export const items = {
     tomato: {
         frame: 12,
         colour: 'pink',
+    },
+    starfruit_seeds: {
+        frame: 13,
+        colour: 'blue',
+    },
+    starfruit: {
+        frame: 14,
+        colour: 'blue',
+    },
+    cucumber_seeds: {
+        frame: 15,
+        colour: 'green',
+    },
+    cucumber: {
+        frame: 16,
+        colour: 'green',
+    },
+    aubergine_seeds: {
+        frame: 17,
+        colour: 'purple',
+    },
+    aubergine: {
+        frame: 18,
+        colour: 'purple',
+    },
+    carrot_seeds: {
+        frame: 19,
+        colour: 'orange',
+    },
+    carrot: {
+        frame: 20,
+        colour: 'orange',
+    },
+    cauliflower_seeds: {
+        frame: 21,
+        colour: 'white',
+    },
+    cauliflower: {
+        frame: 22,
+        colour: 'white',
+    },
+    corn_seeds: {
+        frame: 12,
+        colour: 'yellow',
+    },
+    corn: {
+        frame: 12,
+        colour: 'yellow',
     },
 };

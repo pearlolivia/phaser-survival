@@ -4,8 +4,6 @@ import { game, items } from '../consts';
 export default class InventoryScene extends Scene {
     constructor() {
         super('InventoryScene');
-        this.maxColumns = 5;
-        this.rows = 1;
         this.uiScale = 1.2;
         this.gridSpacing = 30;
         this.margin = 8;
@@ -17,6 +15,8 @@ export default class InventoryScene extends Scene {
         let { mainScene } = data;
         this.mainScene = mainScene;
         this.inventory = mainScene.player.inventory;
+        this.maxColumns = this.inventory.maxColumns;
+        this.rows = this.inventory.rows;
     }
 
     get tileSize() {

@@ -2,7 +2,6 @@ import { Scene, Input } from 'phaser';
 import Player from '../components/Player';
 import Cow from '../components/Cow';
 import Chest from '../components/Chest';
-// import { game } from "../consts";
 
 export default class MainScene extends Scene {
     constructor() {
